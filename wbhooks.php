@@ -24,38 +24,38 @@ if ($verify_token === $fb_verify_token) {
 }
 
 //getlead function
-//function getLead($leadgen_id,$user_access_token) {
+function getLead($leadgen_id,$user_access_token) {
     //fetch lead info from FB API
-//    $graph_url= 'https://graph.facebook.com/v2.8/'.$leadgen_id."?access_token=".$user_access_token;
-//  $ch = curl_init();
-//    curl_setopt($ch, CURLOPT_URL, $graph_url);
-//    curl_setopt($ch, CURLOPT_HEADER, 0);
-//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-//    $output = curl_exec($ch); 
-//    curl_close($ch);
+    $graph_url= 'https://graph.facebook.com/v2.8/'.$leadgen_id."?access_token=".$user_access_token;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $graph_url);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    $output = curl_exec($ch); 
+    curl_close($ch);
 
     //work with the lead data
- //   $leaddata = json_decode($output);
- //   $lead = [];
- //   for($i=0;$i<count($leaddata->field_data);$i++) {
- //       $lead[$leaddata->field_data[$i]->name]=$leaddata->field_data[$i]->values[0];
- //   }
- //   return $lead;
-//}
+    $leaddata = json_decode($output);
+    $lead = [];
+    for($i=0;$i<count($leaddata->field_data);$i++) {
+        $lead[$leaddata->field_data[$i]->name]=$leaddata->field_data[$i]->values[0];
+    }
+    return $lead;
+}
     
 //Take input from Facebook webhook request
-//$input = json_decode(file_get_contents('php://input'),true);
-//$leadgen_id = $input["entry"][0]["changes"][0]["value"]["leadgen_id"];
+$input = json_decode(file_get_contents('php://input'),true);
+$leadgen_id = $input["entry"][0]["changes"][0]["value"]["leadgen_id"];
 
 //FB API Token - you must generate this in the FB API Explorer - tip: exchange it to a long-lived (valid 60 days) token
-//$user_access_token = $fb_user_access_token;
+$user_access_token = $fb_user_access_token;
 
 //Get the lead info using function defined above
-//$lead = getLead($leadgen_id,$user_access_token);
+$lead = getLead($leadgen_id,$user_access_token);
 
 //extract the data from Facebook to new variables that were pre-defined in FB ($email and $full_name and $date_of_birth)
-//extract($lead, EXTR_SKIP);
+extract($lead, EXTR_SKIP);
 //---> end code to be left alone
 
 //Map the Facebook variables to WhatCounts-ready variables
@@ -63,9 +63,9 @@ if ($verify_token === $fb_verify_token) {
 //For instance, if you have "email" as the field you're pulling from facebook, the "email" line below would look like this:
 //$fb_email = $email;
 //So leave the first field alone (as it's mapped later on in this script, but replace the second variable with the name of the Facebook variable you're using.
-//$fb_first_name = $firstname;
-//$fb_last_name = $lastname;
-//$fb_email = $email;
+$fb_first_name = $firstname;
+$fb_last_name = $lastname;
+$fb_email = $email;
 //this area commented out for fields you're not using.  If you choose to use these fields, uncomment them here and then at their corresponding lines starting at line 95
 //$fb_address1 = $address1;
 //$fb_address2 = $address2;
@@ -79,20 +79,20 @@ if ($verify_token === $fb_verify_token) {
 
 //begin code to be left alone --->
 //initialize whatcounts variable with API credentials
-//$whatcounts = new ZayconWhatCounts\WhatCounts($wc_api_realm,$wc_api_password);
+$whatcounts = new ZayconWhatCounts\WhatCounts($wc_api_realm,$wc_api_password);
 
 //get whatcounts realm settings
-//$realm = $whatcounts->getRealmSettings();
+$realm = $whatcounts->getRealmSettings();
 //---> end code to be left alone
 
 //Prep new subscriber for whatcounts
-//$subscriber = new ZayconWhatCounts\Subscriber;
-//$subscriber
-//    ->setFirstName("$fb_first_name");
-//$subscriber
-//    ->setLastName("$fb_last_name");
-//$subscriber
-//    ->setEmail("$fb_email");
+$subscriber = new ZayconWhatCounts\Subscriber;
+$subscriber
+    ->setFirstName("$fb_first_name");
+$subscriber
+    ->setLastName("$fb_last_name");
+$subscriber
+    ->setEmail("$fb_email");
 //This section commented out as unnecessary fields- if you want to gather any of this data via your FaceBook form feel free to uncomment these.
 //$subscriber
 //    ->setAddress1("$fb_address1");
@@ -113,15 +113,15 @@ if ($verify_token === $fb_verify_token) {
 //$subscriber
 //    ->setCompany("$fb_company");
 //End commented out section
-//$subscriber
-//    ->setForceSub(false);
-//$subscriber
-//    ->setFormat(99);
-//$subscriber
-//    ->setOverrideConfirmation(false);
-//$subscriber
-//    ->setListId($wc_list_id);
+$subscriber
+    ->setForceSub(false);
+$subscriber
+    ->setFormat(99);
+$subscriber
+    ->setOverrideConfirmation(false);
+$subscriber
+    ->setListId($wc_list_id);
 
-//$subscribers = $whatcounts->subscribe($subscriber);
+$subscribers = $whatcounts->subscribe($subscriber);
 ?>
 
