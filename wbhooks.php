@@ -5,7 +5,7 @@ $fb_verify_token = 'Headphones2016bySkullCandy99'; //put in your facebook verify
 $fb_user_access_token = 'EAATeansT7awBALJqOiA0L4M5BzO4cW8xawHak7f2FRd3ZB7jwWEklci9gsDVPiRCMOa83sZAWYXcaZCcppb2UoVF2CZBMiXAiLcpdgQKsL0yjOFfk1gaEeUBeKygZA1mXtjA9l2HWTbxwMNVOGzvJ'; //put in your facebook user access token here - you must generate this in the FB API Explorer - tip: exchange it to a long-lived (valid 60 days) token 
 $wc_api_realm = 'skullcandy'; //no need to change this, it's already populated with your whatcounts API realm
 $wc_api_password = 'etylinel4322'; //no need to change this unless you change your api password for whatcounts
-$wc_list_id = '115'; //here you need to put in the list ID for the whatcounts list you want the subscribers added to.  In this case, "115" is the ID of the "SKDYUS - TestAPI" list.
+$wc_list_id = '6'; //here you need to put in the list ID for the whatcounts list you want the subscribers added to.  In this case, "115" is the ID of the "SKDYUS - TestAPI" list.
 //End SkullCandy customization section
     
 //Begin code to be left alone -------->
@@ -63,8 +63,8 @@ extract($lead, EXTR_SKIP);
 //For instance, if you have "email" as the field you're pulling from facebook, the "email" line below would look like this:
 //$fb_email = $email;
 //So leave the first field alone (as it's mapped later on in this script, but replace the second variable with the name of the Facebook variable you're using.
-$fb_first_name = $firstname;
-$fb_last_name = $lastname;
+//$fb_first_name = $firstname;
+//$fb_last_name = $lastname;
 $fb_email = $email;
 //this area commented out for fields you're not using.  If you choose to use these fields, uncomment them here and then at their corresponding lines starting at line 95
 //$fb_address1 = $address1;
@@ -87,10 +87,10 @@ $realm = $whatcounts->getRealmSettings();
 
 //Prep new subscriber for whatcounts
 $subscriber = new ZayconWhatCounts\Subscriber;
-$subscriber
-    ->setFirstName("$fb_first_name");
-$subscriber
-    ->setLastName("$fb_last_name");
+//$subscriber
+//    ->setFirstName("$fb_first_name");
+//$subscriber
+//    ->setLastName("$fb_last_name");
 $subscriber
     ->setEmail("$fb_email");
 //This section commented out as unnecessary fields- if you want to gather any of this data via your FaceBook form feel free to uncomment these.
