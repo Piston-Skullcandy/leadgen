@@ -63,8 +63,8 @@ extract($lead, EXTR_SKIP);
 //For instance, if you have "email" as the field you're pulling from facebook, the "email" line below would look like this:
 //$fb_email = $email;
 //So leave the first field alone (as it's mapped later on in this script, but replace the second variable with the name of the Facebook variable you're using.
-$fb_first_name = $first_name;
-$fb_last_name = $last_name;
+$fb_first_name = $firstname;
+$fb_last_name = $lastname;
 $fb_email = $email;
 //this area commented out for fields you're not using.  If you choose to use these fields, uncomment them here and then at their corresponding lines starting at line 95
 //$fb_address1 = $address1;
